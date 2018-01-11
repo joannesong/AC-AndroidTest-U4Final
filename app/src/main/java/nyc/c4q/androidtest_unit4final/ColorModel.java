@@ -10,10 +10,19 @@ public class ColorModel {
     private String orange;
     private String purple;
 
-    public ColorModel(String black, String brown, String orange, String purple) {
+    public void setBlack(String black) {
         this.black = black;
+    }
+
+    public void setBrown(String brown) {
         this.brown = brown;
+    }
+
+    public void setOrange(String orange) {
         this.orange = orange;
+    }
+
+    public void setPurple(String purple) {
         this.purple = purple;
     }
 

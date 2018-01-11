@@ -33,6 +33,8 @@ public class MainActivity extends AppCompatActivity {
     private String brown;
     private String orange;
     private String purple;
+    private ColorModel colorModel = new ColorModel();
+    private RecyclerView recyclerView;
 
 
     @Override
@@ -52,14 +54,14 @@ public class MainActivity extends AppCompatActivity {
         colorDict.put("orange", orange);
         colorDict.put("purple", purple);
 
-        // TODO: adding all the colors and their values would be tedious, instead fetch it from the url below
+        // TODO: adding all the colors and their values would be tedious, instead fetch it from the url below +++
         // https://raw.githubusercontent.com/operable/cog/master/priv/css-color-names.json
 
         colorsList = new ArrayList<>();
         String[] names = new String[] {"blue", "red", "purple", "indigo", "orange", "brown", "black", "green"};
         for(String n: names) colorsList.add(n);
 
-        RecyclerView recyclerView = findViewById(R.id.rv);
+        recyclerView = findViewById(R.id.rv);
         adapter = new ColorAdapter(colorsList, colorDict);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -114,10 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 brown = response.body().getBrown();
                 orange = response.body().getOrange();
                 purple = response.body().getPurple();
+                colorDict.put("black", black);
+                colorDict.put("brown", brown);
+                colorDict.put("orange", orange);
+                colorDict.put("purple", purple);
                 Log.e("hello", purple);
                 Log.e("BLACK", black.toString());
-//                bookAdapter = new BookAdapter(colorModelResponse);
-//                recyclerView.setAdapter(bookAdapter);
 
             }
 

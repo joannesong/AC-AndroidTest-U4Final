@@ -33,17 +33,24 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHol
         View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.color_itemview, parent, false);
         return new ColorViewHolder(itemView);
     }
-
     @Override
-    public void onBindViewHolder(ColorViewHolder holder, int position) {
-        String color = colorNames.get(position);
+    public void onBindViewHolder(final ColorViewHolder holder, int position) {
+        final String color = colorNames.get(position);
+        final String hex = String.valueOf(getColor(color));
         holder.name.setText(color);
         try {
             holder.name.setTextColor(Color.parseColor(getColor(color)));
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(holder.itemView.getContext(), color + " has a HEX value of " + hex, Toast.LENGTH_SHORT).show();
+                }
+            });
         } catch (Exception e) { // default to black if color is not available or invalid hex.
             Log.d(TAG, "Unable to parse color: " + color);
             holder.name.setTextColor(Color.parseColor("#00ff00"));
             // TODO: When the name in a viewHolder is clicked,
+
             // display a long toast with the text "{color_name} has a HEX value of {color_hex}
             // for example: "blue has a HEX value of #0000ff"
         }
@@ -67,12 +74,12 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHol
         public ColorViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.color_name);
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), " has a HEX value of " , Toast.LENGTH_LONG ).show();
-                }
-            });
+//            itemView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Toast.makeText(v.getContext(), " has a HEX value of " , Toast.LENGTH_LONG ).show();
+//                }
+//            });
 
         }
     }
