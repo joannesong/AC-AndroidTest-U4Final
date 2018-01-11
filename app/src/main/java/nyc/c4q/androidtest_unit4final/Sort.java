@@ -18,9 +18,43 @@ public class Sort {
      * @param isAscending
      */
     public static void selectionSort(List<String> list, boolean isAscending) {
-        // TODO: Implement selection sort.
+        // TODO: Implement selection sort. ++++
         // You may not use Collections.sort or its equivalent
         // You may not implement another sorting algorithm that is not "selection sort"
         // Tip: Try a version without ordering first.
+
+        if(isAscending == true){
+            for (int i = list.size(); i > 0; i--) {
+
+                int lastObject = 0;
+
+                for (int j = 0; j < i; j++) {
+
+                    if(list.get(j).compareTo(list.get(lastObject)) > 0){
+                        lastObject = j;
+                    }
+                }
+                String temp = list.get(lastObject);
+                list.set(lastObject, list.get(i - 1));
+                list.set(i-1, temp);
+            }
+        }else{
+            for (int i = list.size(); i > 0; i--) {
+
+                int lastObject = 0;
+
+                for (int j = 0; j < i; j++) {
+
+                    if(list.get(j).compareTo(list.get(lastObject)) < 0){
+                        lastObject = j;
+                    }
+                }
+                String temp = list.get(lastObject);
+                list.set(lastObject, list.get(i - 1));
+                list.set(i-1, temp);
+            }
+
+        }
+
     }
 }
