@@ -89,14 +89,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void clickInfo(){
-        boolean visible = true;
         LinearLayout fragmentContainer = findViewById(R.id.fragment_container);
 
-        if(visible == true){
+        if(fragmentContainer.getVisibility() == View.VISIBLE){
             fragmentContainer.setVisibility(View.GONE);
-            visible = false;
         }
-        else if(visible == false){
+        else{
             fragmentContainer.setVisibility(View.VISIBLE);
         }
         }
