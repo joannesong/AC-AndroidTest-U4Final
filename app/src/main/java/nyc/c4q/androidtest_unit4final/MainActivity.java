@@ -1,5 +1,7 @@
 package nyc.c4q.androidtest_unit4final;
 
+import android.content.Context;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private String orange;
     private String purple;
     private ColorModel colorModel = new ColorModel();
+    private Context context = this;
     private RecyclerView recyclerView;
 
 
@@ -49,10 +52,10 @@ public class MainActivity extends AppCompatActivity {
         colorDict.put("green", "#00ff00");
         colorDict.put("blue", "#0000ff");
         colorDict.put("red", "#ff0000");
-        colorDict.put("black", black);
-        colorDict.put("brown", brown);
-        colorDict.put("orange", orange);
-        colorDict.put("purple", purple);
+//        colorDict.put("black", black);
+//        colorDict.put("brown", brown);
+//        colorDict.put("orange", orange);
+//        colorDict.put("purple", purple);
 
         // TODO: adding all the colors and their values would be tedious, instead fetch it from the url below +++
         // https://raw.githubusercontent.com/operable/cog/master/priv/css-color-names.json
@@ -62,8 +65,9 @@ public class MainActivity extends AppCompatActivity {
         for(String n: names) colorsList.add(n);
 
         recyclerView = findViewById(R.id.rv);
-        adapter = new ColorAdapter(colorsList, colorDict);
-        recyclerView.setAdapter(adapter);
+//        adapter = new ColorAdapter(colorsList, colorDict);
+//        recyclerView.setAdapter(adapter);
+        timer();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
@@ -128,5 +132,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Fail", "I am on onFailure" + t.toString());
             }
         });
+    }
+    private void timer() {
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                adapter = new ColorAdapter(colorsList, colorDict, context);
+                recyclerView.setAdapter(adapter);
+            }
+        }, 2000);
     }
 }

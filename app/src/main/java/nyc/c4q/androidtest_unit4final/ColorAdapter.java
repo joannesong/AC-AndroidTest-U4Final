@@ -1,5 +1,6 @@
 package nyc.c4q.androidtest_unit4final;
 
+import android.content.Context;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,7 +23,7 @@ public class ColorAdapter extends RecyclerView.Adapter<ColorAdapter.ColorViewHol
     private List<String> colorNames;
     private HashMap<String, String> colorDict;
 
-    public ColorAdapter(List<String> colors, HashMap<String, String> colorMap) {
+    public ColorAdapter(List<String> colors, HashMap<String, String> colorMap, Context context) {
         Sort.selectionSort(colors, true);
         colorNames = colors;
         colorDict = colorMap;
